@@ -5,6 +5,7 @@ import TaskList from "./components/TaskList";
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     const storedTasks = localStorage.getItem("tasks");
@@ -34,12 +35,16 @@ function App() {
     setTasks(updatedTask);
   };
 
+  const filteredTasks = tasks.filter((task) =>
+    task.title.toLowerCase().includes(filter.toLowerCase())
+  );
+
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col items-center">
       <h1 className="text-3xl font-bold mb-6">TodoApp v2</h1>
       <AddTask addTask={addTask} />
-      <FilterTask />
-      <TaskList tasks={tasks} completeTask={completeTask}/>
+      <FilterTask filter={filter} setFilter={setFilter} />
+      <TaskList tasks={filteredTasks} completeTask={completeTask}/>
     </div>
   );
 }
