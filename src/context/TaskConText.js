@@ -4,6 +4,7 @@ const TaskContext = createContext();
 
 export const ADD_TASK = "ADD_TASK";
 export const LOAD_TASKS = "LOAD_TASKS";
+export const COMPLETE_TASK = "COMPLETE_TASK";
 
 
 const taskReducer = (state, action) => {
@@ -14,6 +15,16 @@ const taskReducer = (state, action) => {
       const newTask = [action.payload, ...state.tasks];
       localStorage.setItem("tasks", JSON.stringify(newTask));
       return { ...state, tasks: newTask };
+    case COMPLETE_TASK:
+      const updatedTasks = state.tasks.map((task) => {
+        // console.log(task.id, action.payload)
+        if (task.id === action.payload) {
+          return { ...task, completed: !task.completed };
+        }
+        return task;
+      });
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+      return { ...state, tasks: updatedTasks };
     default:
       return state;
   }
