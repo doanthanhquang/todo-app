@@ -15,7 +15,9 @@ function TaskItem({ task }) {
         <p className="text-sm">{task.description}</p>
       </div>
       <div className="flex items-center gap-2">
-        <p className="text-sm">{task.completed ? "Completed" : "Not Completed"}</p>
+        <p className="text-sm">
+          {task.completed ? "Completed" : "Not Completed"}
+        </p>
       </div>
     </div>
   );
