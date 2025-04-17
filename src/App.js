@@ -41,7 +41,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col items-center">
-      <h1 className="text-3xl font-bold mb-6">TodoApp v2</h1>
+      <h1 className="text-3xl font-bold mb-6">TodoApp v1</h1>
       <AddTask addTask={addTask} />
       <FilterTask filter={filter} setFilter={setFilter} />
       <TaskList tasks={filteredTasks} completeTask={completeTask}/>
