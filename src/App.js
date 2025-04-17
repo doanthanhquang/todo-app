@@ -27,12 +27,19 @@ function App() {
     setTasks([...tasks, newTask]);
   };
 
+  const completeTask = (id) => {
+    const updatedTask = tasks.map((task) =>
+      task.id === id ? { ...task, completed: !task.completed } : task
+    );
+    setTasks(updatedTask);
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col items-center">
       <h1 className="text-3xl font-bold mb-6">TodoApp v2</h1>
       <AddTask addTask={addTask} />
       <FilterTask />
-      <TaskList tasks={tasks} />
+      <TaskList tasks={tasks} completeTask={completeTask}/>
     </div>
   );
 }
